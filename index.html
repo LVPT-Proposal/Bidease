@@ -173,16 +173,26 @@
             gap: 3rem;
             align-items: center;
         }
-        .hand-animation-area {
-            background: #151B4C08;
-            border-radius: 2rem;
-            padding: 2rem;
-            text-align: center;
-            border: 1px solid rgba(92,127,255,0.2);
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
         }
-        .poker-card-symbol {
-            font-size: 4rem;
-            letter-spacing: 0.5rem;
+        .gallery-grid a {
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .gallery-grid a:hover {
+            transform: scale(1.02);
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
         }
         .carousel-track {
             display: flex;
@@ -270,36 +280,46 @@
             border-radius: 12px;
             margin-bottom: 1rem;
         }
-        .gallery-grid {
+        .venue-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
             margin-top: 2rem;
         }
-        .gallery-item {
-            border-radius: 1rem;
+        .venue-card {
+            background: white;
+            border-radius: 1.5rem;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
-        .gallery-item img {
+        .venue-card:hover {
+            transform: translateY(-5px);
+        }
+        .venue-card img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
-            transition: transform 0.3s;
         }
-        .gallery-item:hover img {
-            transform: scale(1.03);
+        .venue-label {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            background: white;
         }
         @media (max-width: 1024px) {
             .grid-3, .grid-4, .split-layout { grid-template-columns: 1fr; gap: 2rem; }
             .section-title { font-size: 2.2rem; }
             .container { padding: 0 1.5rem; }
             .hero { min-height: 80vh; }
+            .hero .section-title { font-size: 2.8rem; word-break: break-word; }
         }
         @media (max-width: 640px) {
             .brand-logos { padding: 1rem; }
             .bidease-logo-img { height: 36px; }
             .btn-primary { padding: 0.75rem 1.5rem; }
+            .hero .section-title { font-size: 2.2rem; }
+            .gallery-grid img { height: 120px; }
         }
         section { padding: 5rem 0; }
         .animate-up { opacity: 0; transform: translateY(30px); transition: none; }
@@ -309,15 +329,14 @@
 
 <div class="brand-logos">
     <img class="bidease-logo-img" src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69bed472ad1400ddd7c5d459.png" alt="Bidease">
-    <!-- LVPT logo removed from top right, moved to footer -->
 </div>
 
-<!-- HERO BLOCK -->
+<!-- HERO -->
 <section class="hero" id="hero">
     <div class="container hero-content">
         <div class="animate-up" id="heroTag">
             <span class="badge-gold">EXECUTIVE EXPERIENCE</span>
-            <h1 class="section-title" style="font-size: 3.8rem;">Performance Under Pressure.<br>Decision Making at the Highest Level.</h1>
+            <h1 class="section-title" style="font-size: clamp(2.2rem, 6vw, 3.8rem);">Performance Under Pressure.<br>Decision Making at the Highest Level.</h1>
             <p style="font-size: 1.3rem; max-width: 600px; margin: 1.5rem 0;">A private, high-performance poker training experience designed exclusively for the Bidease team. Strategy. Psychology. Competitive Edge.</p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="#experience-builder" class="btn-primary">View Experience <i class="fas fa-arrow-right"></i></a>
@@ -355,7 +374,7 @@
     </div>
 </section>
 
-<!-- HAND ANALYSIS -->
+<!-- HAND ANALYSIS + CORPORATE GALLERY (replaced right side) -->
 <section id="hand-analysis" style="background: #F0F4FE;">
     <div class="container">
         <div class="split-layout">
@@ -366,15 +385,30 @@
                 <p>Our elite pros break down every move: optimal lines, alternative strategies, and psychological triggers. You'll get instant feedback that sharpens analytical thinking and elevates executive presence under pressure.</p>
                 <div style="margin-top: 1.5rem;"><i class="fas fa-check-circle gold-text"></i> Live decision audits · <i class="fas fa-check-circle gold-text"></i> Probability mapping · <i class="fas fa-check-circle gold-text"></i> Emotional control drills</div>
             </div>
-            <div class="hand-animation-area animate-up">
-                <div class="poker-card-symbol">
-                    <i class="fas fa-heart" style="color:#D4AF37;"></i> <i class="fas fa-spade"></i> <i class="fas fa-club"></i> <i class="fas fa-diamond" style="color:#D4AF37;"></i>
+            <div class="animate-up">
+                <!-- Corporate experiences gallery (lightbox style) -->
+                <h3 style="margin-bottom: 0.8rem;">Corporate Experiences</h3>
+                <div class="gallery-grid" id="corporate-gallery">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/677637c410dd0d5b0f8c899b.jpeg" data-caption="Corporate Private Dining" target="_blank">
+                        <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/677637c410dd0d5b0f8c899b.jpeg" alt="Corporate Private Dining" loading="lazy">
+                    </a>
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/679d4211387caa61facbde2f.png" data-caption="Corporate Private Suite" target="_blank">
+                        <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/679d4211387caa61facbde2f.png" alt="Corporate Private Suite" loading="lazy">
+                    </a>
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/67763a3ace41a6edba7e0f12.png" data-caption="Corporate Mens Retreat" target="_blank">
+                        <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/67763a3ace41a6edba7e0f12.png" alt="Corporate Mens Retreat" loading="lazy">
+                    </a>
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329429e0f0927468b5af13.jpg" data-caption="Corporate Banquet Space" target="_blank">
+                        <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329429e0f0927468b5af13.jpg" alt="Corporate Banquet Space" loading="lazy">
+                    </a>
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b34f27222c3354cc26fe56.png" data-caption="Corporate Venetian Poker Room" target="_blank">
+                        <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b34f27222c3354cc26fe56.png" alt="Corporate Venetian Poker Room" loading="lazy">
+                    </a>
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329adb1d466e5f44c4fd90.jpg" data-caption="Corporate Girl Power" target="_blank">
+                        <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329adb1d466e5f44c4fd90.jpg" alt="Corporate Girl Power" loading="lazy">
+                    </a>
                 </div>
-                <div style="background: white; border-radius: 1rem; padding: 1rem; margin-top: 1rem;">
-                    <p><strong>♠️ A♥️ vs K♣️ Q♦️</strong> — Pre-flop decision point</p>
-                    <div style="height: 6px; background:#ddd; width:100%; border-radius: 3px;"><div style="width:68%; background: var(--gold); height:6px; border-radius:3px;"></div></div>
-                    <p class="gold-text" style="margin-top: 0.8rem;">+EV play: 3-bet for value</p>
-                </div>
+                <p class="gold-text" style="font-size: 0.8rem; margin-top: 1rem; text-align: center;">Click images to view full size</p>
             </div>
         </div>
     </div>
@@ -491,7 +525,7 @@
             </div>
         </div>
 
-        <!-- CUSTOM ADD-ONS SECTION -->
+        <!-- CUSTOM ADD-ONS -->
         <div class="animate-up" style="margin-top: 3rem;">
             <span class="badge-gold">BRANDED KEEPSAKES</span>
             <h3 class="section-title" style="font-size: 1.8rem;">Elevate with custom poker gear</h3>
@@ -517,19 +551,19 @@
     </div>
 </section>
 
-<!-- PAST EVENTS GALLERY (using images from sample proposals) -->
-<section id="past-events">
+<!-- POTENTIAL VENUES (renamed from PAST EVENTS) -->
+<section id="potential-venues">
     <div class="container">
         <div class="animate-up">
-            <span class="badge-gold">REAL MOMENTS</span>
-            <h2 class="section-title">Past Events</h2>
-            <p class="section-sub">Exclusive experiences we've delivered for elite groups</p>
+            <span class="badge-gold">SPECTACULAR BACKDROPS</span>
+            <h2 class="section-title">Potential Venues</h2>
+            <p class="section-sub">Choose from Las Vegas' most iconic locations for your exclusive event</p>
         </div>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28a1d79ed017c023b2.jpg" alt="Allegiant Stadium poker event"></div>
-            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28b700a2a6f37291b3.jpg" alt="Las Vegas Distillery"></div>
-            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5c8ff215da264751a508.jpg" alt="Mob Museum poker training"></div>
-            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697adfcc1fd827412f82ff14.jpg" alt="Here Kitty Kitty speakeasy"></div>
+        <div class="venue-gallery">
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28a1d79ed017c023b2.jpg" alt="Allegiant Stadium"><div class="venue-label">🏟️ Allegiant Stadium</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28b700a2a6f37291b3.jpg" alt="Las Vegas Distillery"><div class="venue-label">🥃 Las Vegas Distillery</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5c8ff215da264751a508.jpg" alt="Mob Museum"><div class="venue-label">🕵️ The Mob Museum</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697adfcc1fd827412f82ff14.jpg" alt="Here Kitty Kitty"><div class="venue-label">🍸 Here Kitty Kitty Speakeasy</div></div>
         </div>
     </div>
 </section>
@@ -546,8 +580,7 @@
                 <a href="tel:7253074477" class="btn-outline" style="border-color:white; color:white;">Call Matt (725) 307-4477</a>
             </div>
             <hr class="gold-hr" style="margin: 2rem auto;">
-            <p style="font-style: italic;">“Precision Crafted Performance is the future of this brand... it's a mindset.”</p>
-            <!-- LVPT logo in footer bottom right corner -->
+            <p style="font-style: italic;">“When you work with us, you’re not just getting a technology provider, you’re getting a partner who cares.” — Boris Abaev, Co-founder, CEO</p>
             <div class="footer-lvpt">
                 <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/688b94d7fc4ae33b5ab65b48.png" alt="Las Vegas Poker Training">
             </div>
@@ -567,7 +600,7 @@
         });
     });
 
-    // Experience builder logic
+    // Experience builder
     const btns = document.querySelectorAll('.time-btn');
     const focusTitle = document.getElementById('focusTitle');
     const focusDesc = document.getElementById('focusDesc');
