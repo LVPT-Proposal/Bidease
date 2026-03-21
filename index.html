@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bidease × LVPT | Precision Poker Training Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F4F4F4;
+            color: #151B4C;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+        :root {
+            --bidease-navy: #151B4C;
+            --bidease-blue: #5C7FFF;
+            --bidease-accent: #0D47FD;
+            --bidease-light: #F4F4F4;
+            --gold: #D4AF37;
+            --black-rich: #0A0A0A;
+            --white-pure: #FFFFFF;
+            --gray-soft: #E8EAF6;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .section-sub {
+            font-size: 1.2rem;
+            color: #2c3a6b;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+        }
+        .card {
+            background: var(--white-pure);
+            border-radius: 1.5rem;
+            padding: 1.8rem;
+            box-shadow: 0 15px 35px rgba(21, 27, 76, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(21, 27, 76, 0.12);
+        }
+        .glass-card {
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(2px);
+        }
+        .btn-primary {
+            background: linear-gradient(105deg, #151B4C 0%, #0D47FD 100%);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 8px 18px rgba(13, 71, 253, 0.2);
+        }
+        .btn-primary:hover {
+            transform: scale(1.03);
+            background: linear-gradient(105deg, #0D1B5C, #2C5FFF);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--bidease-blue);
+            color: var(--bidease-navy);
+            padding: 0.7rem 1.4rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at 10% 20%, rgba(92,127,255,0.08), rgba(21,27,76,0.02));
+            overflow: hidden;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .brand-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+        }
+        .bidease-logo-img {
+            height: 48px;
+            width: auto;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+        }
+        .time-tabs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .time-btn {
+            background: #EDF2F7;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #151B4C;
+        }
+        .time-btn.active {
+            background: var(--bidease-navy);
+            color: white;
+            box-shadow: 0 6px 12px rgba(21,27,76,0.2);
+        }
+        .progress-wrapper {
+            background: #E2E8F0;
+            border-radius: 20px;
+            height: 8px;
+            margin: 1.5rem 0;
+        }
+        .progress-fill {
+            background: var(--gold);
+            width: 33%;
+            height: 8px;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .hand-animation-area {
+            background: #151B4C08;
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(92,127,255,0.2);
+        }
+        .poker-card-symbol {
+            font-size: 4rem;
+            letter-spacing: 0.5rem;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 1.8rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+        .carousel-track::-webkit-scrollbar {
+            height: 6px;
+        }
+        .carousel-card {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .toggle-switch {
+            display: inline-flex;
+            background: #EFF3FA;
+            border-radius: 40px;
+            padding: 0.25rem;
+            margin: 1rem 0 2rem;
+        }
+        .toggle-option {
+            padding: 0.5rem 1.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .toggle-option.active {
+            background: var(--bidease-navy);
+            color: white;
+        }
+        .floating-cta {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            background: var(--gold);
+            color: #0A0A0A;
+            border-radius: 60px;
+            padding: 0.9rem 1.8rem;
+            font-weight: 800;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,215,0,0.5);
+        }
+        .floating-cta:hover {
+            transform: scale(1.05);
+            background: #c6a217;
+        }
+        .footer-lvpt {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+        .footer-lvpt img {
+            height: 50px;
+            width: auto;
+            opacity: 0.8;
+        }
+        .gold-text { color: var(--gold); }
+        .badge-gold {
+            background: var(--gold);
+            color: #151B4C;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+        hr.gold-hr { width: 80px; height: 3px; background: var(--gold); margin: 1rem auto; }
+        .addon-img {
+            width: 100%;
+            max-height: 140px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+        @media (max-width: 1024px) {
+            .grid-3, .grid-4, .split-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .section-title { font-size: 2.2rem; }
+            .container { padding: 0 1.5rem; }
+            .hero { min-height: 80vh; }
+        }
+        @media (max-width: 640px) {
+            .brand-logos { padding: 1rem; }
+            .bidease-logo-img { height: 36px; }
+            .btn-primary { padding: 0.75rem 1.5rem; }
+        }
+        section { padding: 5rem 0; }
+        .animate-up { opacity: 0; transform: translateY(30px); transition: none; }
+    </style>
+</head>
+<body>
+
+<div class="brand-logos">
+    <img class="bidease-logo-img" src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69be409456f830f34674eca0.png" alt="Bidease">
+    <!-- LVPT logo removed from top right, moved to footer -->
+</div>
+
+<!-- HERO BLOCK -->
+<section class="hero" id="hero">
+    <div class="container hero-content">
+        <div class="animate-up" id="heroTag">
+            <span class="badge-gold">EXECUTIVE EXPERIENCE</span>
+            <h1 class="section-title" style="font-size: 3.8rem;">Performance Under Pressure.<br>Decision Making at the Highest Level.</h1>
+            <p style="font-size: 1.3rem; max-width: 600px; margin: 1.5rem 0;">A private, high-performance poker training experience designed exclusively for the Bidease team. Strategy. Psychology. Competitive Edge.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#experience-builder" class="btn-primary">View Experience <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact-cta" class="btn-outline" style="text-decoration: none;">Secure your slot</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY THIS WORKS -->
+<section id="why-works">
+    <div class="container">
+        <div class="animate-up">
+            <span class="badge-gold">STRATEGIC ALIGNMENT</span>
+            <h2 class="section-title">Why this works for Bidease</h2>
+            <p class="section-sub">High-stakes performance culture meets data-driven decision intelligence</p>
+        </div>
+        <div class="grid-3">
+            <div class="card animate-up">
+                <i class="fas fa-chart-line" style="font-size: 2.5rem; margin-bottom: 1rem;"></i>
+                <h3>Data-Driven Decisions</h3>
+                <p>Real-time hand analysis mirrors ad-bidding logic: optimize with incomplete information under time pressure.</p>
+            </div>
+            <div class="card animate-up">
+                <i class="fas fa-brain" style="font-size: 2.5rem; margin-bottom: 1rem;"></i>
+                <h3>Performance Under Uncertainty</h3>
+                <p>Train your team to extract signal from noise, calibrate risk, and stay razor-sharp in volatile environments.</p>
+            </div>
+            <div class="card animate-up">
+                <i class="fas fa-users" style="font-size: 2.5rem; margin-bottom: 1rem;"></i>
+                <h3>Team Connection Through Competition</h3>
+                <p>Elite bonding that creates trust, lateral thinking, and shared wins—amplifying Bidease's collaborative edge.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HAND ANALYSIS -->
+<section id="hand-analysis" style="background: #F0F4FE;">
+    <div class="container">
+        <div class="split-layout">
+            <div class="animate-up">
+                <span class="badge-gold">THE SECRET WEAPON</span>
+                <h2 class="section-title" style="font-size: 2.4rem;">Real‑time Hand Analysis</h2>
+                <p style="font-size: 1.1rem; margin: 1rem 0 1rem 0;">"Imagine Tiger Woods watching your back‑swing in real time and adjusting exactly what you are doing right and wrong." — <strong>Matt Carpenter, LVPT</strong></p>
+                <p>Our elite pros break down every move: optimal lines, alternative strategies, and psychological triggers. You'll get instant feedback that sharpens analytical thinking and elevates executive presence under pressure.</p>
+                <div style="margin-top: 1.5rem;"><i class="fas fa-check-circle gold-text"></i> Live decision audits · <i class="fas fa-check-circle gold-text"></i> Probability mapping · <i class="fas fa-check-circle gold-text"></i> Emotional control drills</div>
+            </div>
+            <div class="hand-animation-area animate-up">
+                <div class="poker-card-symbol">
+                    <i class="fas fa-heart" style="color:#D4AF37;"></i> <i class="fas fa-spade"></i> <i class="fas fa-club"></i> <i class="fas fa-diamond" style="color:#D4AF37;"></i>
+                </div>
+                <div style="background: white; border-radius: 1rem; padding: 1rem; margin-top: 1rem;">
+                    <p><strong>♠️ A♥️ vs K♣️ Q♦️</strong> — Pre-flop decision point</p>
+                    <div style="height: 6px; background:#ddd; width:100%; border-radius: 3px;"><div style="width:68%; background: var(--gold); height:6px; border-radius:3px;"></div></div>
+                    <p class="gold-text" style="margin-top: 0.8rem;">+EV play: 3-bet for value</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTERACTIVE BUILDER -->
+<section id="experience-builder">
+    <div class="container">
+        <div class="animate-up">
+            <span class="badge-gold">CUSTOMIZE YOUR SESSION</span>
+            <h2 class="section-title">Tailor the intensity</h2>
+            <p class="section-sub">Choose the duration that fits your team's objectives</p>
+        </div>
+        <div class="card" style="background: white;">
+            <div class="time-tabs">
+                <button data-hours="2" class="time-btn active">2 HOURS</button>
+                <button data-hours="3" class="time-btn">3 HOURS</button>
+                <button data-hours="4" class="time-btn">4 HOURS</button>
+            </div>
+            <div id="dynamicContent">
+                <h3 id="focusTitle">⚡ Hand Analysis Focus</h3>
+                <p id="focusDesc">Deep-dive into core hand reviews, optimal betting patterns, and pressure testing. Perfect for sharpening decision agility.</p>
+            </div>
+            <div class="progress-wrapper">
+                <div id="timelineFill" class="progress-fill" style="width:33%"></div>
+            </div>
+            <div style="font-size: 0.9rem; color:#2c3a6b;"><i class="fas fa-clock"></i> <span id="durationNote">Recommended: fast-paced, high-engagement training</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- THE PROS -->
+<section id="pros">
+    <div class="container">
+        <div class="animate-up">
+            <span class="badge-gold">WORLD-CLASS MINDS</span>
+            <h2 class="section-title">Your Instructors</h2>
+            <p class="section-sub">WSOP champions, million-dollar earners, elite coaches</p>
+        </div>
+        <div class="grid-3">
+            <div class="card animate-up">
+                <img src="https://www.seminolehardrockpokeropen.com/wp-content/uploads/2022/01/2022-LHPO-Jeff-Madsen.jpg" alt="Jeff Madsen" style="width:100%; height:200px; object-fit:cover; border-radius:1rem;">
+                <h3 style="margin-top:1rem;">Jeff Madsen</h3>
+                <p>4x WSOP Bracelet • $7M+ winnings • 10+ years teaching</p>
+            </div>
+            <div class="card animate-up">
+                <img src="https://www.gamblinginsider.com/img/news/kenna-james-ape-in-poker-partnership.jpg" alt="Kenna James" style="width:100%; height:200px; object-fit:cover; border-radius:1rem;">
+                <h3 style="margin-top:1rem;">Kenna James</h3>
+                <p>$4.2M+ earnings • 20+ years coaching elite performers</p>
+            </div>
+            <div class="card animate-up">
+                <img src="https://media.cardplayer.com/assets/000/031/133/BLACK_WINS.jpg" alt="Taylor Black" style="width:100%; height:200px; object-fit:cover; border-radius:1rem;">
+                <h3 style="margin-top:1rem;">Taylor Black</h3>
+                <p>WPT Champion • $5.3M+ live earnings • 3+ years teaching</p>
+            </div>
+        </div>
+        <p class="gold-text" style="margin-top: 2rem; font-size:0.9rem;"><i class="fas fa-shield-alt"></i> Actual instructors assigned based on availability — all pros have $6M+ in tournament earnings.</p>
+    </div>
+</section>
+
+<!-- VENUE FLEXIBILITY -->
+<section id="venues">
+    <div class="container">
+        <div class="animate-up">
+            <span class="badge-gold">FULL-SERVICE LOGISTICS</span>
+            <h2 class="section-title">Venue flexibility</h2>
+            <p class="section-sub">We handle everything — from hotel suites to iconic Vegas venues</p>
+        </div>
+        <div class="toggle-switch" id="venueToggleContainer">
+            <div class="toggle-option active" data-venue="on">On‑Site (Mobile)</div>
+            <div class="toggle-option" data-venue="off">Off‑Site (Premium Venues)</div>
+        </div>
+        <div class="grid-4" id="venueCardsGrid">
+            <div class="card"><i class="fas fa-hotel fa-2x"></i><h3>Hotel Suite</h3><p id="v1Desc">We bring the felt, chips, and pros directly to your luxury suite.</p></div>
+            <div class="card"><i class="fas fa-utensils fa-2x"></i><h3>Private Dining</h3><p id="v2Desc">Upscale restaurant + poker overlay: seamless dining to training.</p></div>
+            <div class="card"><i class="fas fa-chalkboard-user fa-2x"></i><h3>Poker Room</h3><p id="v3Desc">Exclusive access to legendary poker rooms (Venetian, etc).</p></div>
+            <div class="card"><i class="fas fa-landmark fa-2x"></i><h3>Off‑Site Venue</h3><p id="v4Desc">Distillery, stadium, speakeasy – fully immersive backdrops.</p></div>
+        </div>
+        <div class="card glass-card" style="margin-top: 2rem; text-align:center;">
+            <i class="fas fa-concierge-bell gold-text"></i> <strong>We handle EVERYTHING</strong> — tables, chips, branded courseware, open bar, transportation, coordination.
+        </div>
+    </div>
+</section>
+
+<!-- PRICING + CUSTOM ADD-ONS -->
+<section id="pricing">
+    <div class="container">
+        <div class="animate-up">
+            <span class="badge-gold">INVESTMENT</span>
+            <h2 class="section-title">Custom tailored for your group</h2>
+            <p class="section-sub">2 world‑class pros | 8–16 players | Premium inclusions</p>
+        </div>
+        <div class="grid-3" style="margin-bottom: 2rem;">
+            <div class="card text-center">
+                <i class="fas fa-building fa-2x"></i>
+                <h3>Classic (On‑Site)</h3>
+                <div class="gold-text" style="font-size:1.8rem;">$6,650</div>
+                <p>2‑hour minimum · We bring everything to your venue.</p>
+                <hr style="margin: 1rem 0;">
+                <p><strong>Upgrade durations:</strong><br>3‑hour: $8,665 | 4‑hour: $10,665</p>
+                <small>Tables, chips, cards, 2 pros, custom strategy guide included.</small>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-champagne-glasses fa-2x"></i>
+                <h3>Signature</h3>
+                <div class="gold-text" style="font-size:1.8rem;">$11,500+</div>
+                <p>Open bar + appetizers, transportation, premium venue (Venetian, etc).</p>
+            </div>
+            <div class="card text-center">
+                <i class="fas fa-crown fa-2x"></i>
+                <h3>Full Immersion</h3>
+                <div class="gold-text" style="font-size:1.8rem;">$19K–$32K</div>
+                <p>Stadium tours, distillery buyouts, custom chips/decks, full catering.</p>
+            </div>
+        </div>
+
+        <!-- CUSTOM ADD-ONS SECTION -->
+        <div class="animate-up" style="margin-top: 3rem;">
+            <span class="badge-gold">BRANDED KEEPSAKES</span>
+            <h3 class="section-title" style="font-size: 1.8rem;">Elevate with custom poker gear</h3>
+            <div class="grid-3">
+                <div class="card">
+                    <img class="addon-img" src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69a761d3b86978c8aea7c942.png" alt="Custom cards">
+                    <h3>Custom PVC Card Decks</h3>
+                    <p><span class="gold-text">+$1,000</span> — 20 premium plastic decks (no tear). Enough for every guest to take a pack home.</p>
+                </div>
+                <div class="card">
+                    <img class="addon-img" src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69be429837de312732a070bf.png" alt="Custom chips">
+                    <h3>Full‑Set Custom Chips</h3>
+                    <p><span class="gold-text">+$1,000</span> — 500+ chips, enough for your entire group. Keep them as business cards or marketing swag. We ship to you.</p>
+                </div>
+                <div class="card">
+                    <img class="addon-img" src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69be43370e1bdb947192833d.png" alt="Strategy guide">
+                    <h3>Bidease Poker Training Guide</h3>
+                    <p><strong>Included in every package</strong> — custom “Bidease Poker Training Strategy Guide” for each guest.</p>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-size:0.9rem; text-align:center;"><i class="fas fa-gift gold-text"></i> All packages include custom strategy guide. Add chips or cards to make the experience unforgettable.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PAST EVENTS GALLERY (using images from sample proposals) -->
+<section id="past-events">
+    <div class="container">
+        <div class="animate-up">
+            <span class="badge-gold">REAL MOMENTS</span>
+            <h2 class="section-title">Past Events</h2>
+            <p class="section-sub">Exclusive experiences we've delivered for elite groups</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28a1d79ed017c023b2.jpg" alt="Allegiant Stadium poker event"></div>
+            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28b700a2a6f37291b3.jpg" alt="Las Vegas Distillery"></div>
+            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5c8ff215da264751a508.jpg" alt="Mob Museum poker training"></div>
+            <div class="gallery-item"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697adfcc1fd827412f82ff14.jpg" alt="Here Kitty Kitty speakeasy"></div>
+        </div>
+    </div>
+</section>
+
+<!-- CLOSING + CTA -->
+<section id="contact-cta" style="background: linear-gradient(145deg, #151B4C, #0B0F32); color: white;">
+    <div class="container" style="text-align: center;">
+        <div class="animate-up">
+            <span class="badge-gold" style="background:#D4AF37; color:#0A0A0A;">NEXT STEPS</span>
+            <h2 class="section-title" style="color: white;">Make Your Team Look Like Rockstars.</h2>
+            <p style="font-size: 1.3rem; max-width: 700px; margin: 1rem auto;">Confirm your date, select format, lock in the experience. We’ll handle everything. You take the credit.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0;">
+                <a href="mailto:book@pokertraininglasvegas.com?subject=Bidease%20Elite%20Poker%20Experience&body=Hi%2C%20we%20are%20ready%20to%20secure%20our%20Bidease%20poker%20experience.%20Preferred%20date%3A%20________%20Group%20size%3A%20________%20Venue%20preference%3A%20________" class="btn-primary" style="background: var(--gold); color:#151B4C;">Approve & Secure Experience →</a>
+                <a href="tel:7253074477" class="btn-outline" style="border-color:white; color:white;">Call Matt (725) 307-4477</a>
+            </div>
+            <hr class="gold-hr" style="margin: 2rem auto;">
+            <p style="font-style: italic;">“Precision Crafted Performance is the future of this brand... it's a mindset.”</p>
+            <!-- LVPT logo in footer bottom right corner -->
+            <div class="footer-lvpt">
+                <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/688b94d7fc4ae33b5ab65b48.png" alt="Las Vegas Poker Training">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Floating CTA -->
+<a href="#contact-cta" class="floating-cta"><i class="fas fa-trophy"></i> Claim your slot</a>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.animate-up').forEach(el => {
+        gsap.fromTo(el, { opacity: 0, y: 40 }, {
+            opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" }
+        });
+    });
+
+    // Experience builder logic
+    const btns = document.querySelectorAll('.time-btn');
+    const focusTitle = document.getElementById('focusTitle');
+    const focusDesc = document.getElementById('focusDesc');
+    const timelineFill = document.getElementById('timelineFill');
+    const durationNote = document.getElementById('durationNote');
+
+    function updateExperience(hours) {
+        if (hours === '2') {
+            focusTitle.innerHTML = "⚡ Hand Analysis Focus";
+            focusDesc.innerHTML = "Deep-dive into core hand reviews, optimal betting patterns, and pressure testing. Perfect for sharpening decision agility.";
+            timelineFill.style.width = "33%";
+            durationNote.innerHTML = "Fast‑paced, maximum hands reviewed, immediate feedback loop.";
+        } else if (hours === '3') {
+            focusTitle.innerHTML = "🎭 Tells & Psychology Module";
+            focusDesc.innerHTML = "Master emotional control, reading opponents, and behavioral patterns. Extended psychological edge training.";
+            timelineFill.style.width = "66%";
+            durationNote.innerHTML = "Extended focus on non‑verbal cues & mental resilience.";
+        } else {
+            focusTitle.innerHTML = "🏆 Tournament Structure + Reading Your Opponent Workshop";
+            focusDesc.innerHTML = "Full tournament flow, beginning - middle - late stage & final table strategy. Can close out event with short sit & go style tournament.";
+            timelineFill.style.width = "100%";
+            durationNote.innerHTML = "Advanced tournament dynamics + optional sit & go finale.";
+        }
+    }
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateExperience(btn.getAttribute('data-hours'));
+        });
+    });
+
+    // Venue toggle
+    const onSiteOption = document.querySelector('[data-venue="on"]');
+    const offSiteOption = document.querySelector('[data-venue="off"]');
+    const v1Desc = document.getElementById('v1Desc');
+    const v2Desc = document.getElementById('v2Desc');
+    const v3Desc = document.getElementById('v3Desc');
+    const v4Desc = document.getElementById('v4Desc');
+
+    function setVenueMode(mode) {
+        if (mode === 'on') {
+            v1Desc.innerText = "We transform your suite into a high-end poker lounge — tables, chips, pros included.";
+            v2Desc.innerText = "Private dining room + poker felt conversion; seamless flow from meal to competition.";
+            v3Desc.innerText = "Mobile setup: we bring the authentic poker room atmosphere anywhere.";
+            v4Desc.innerText = "Flexible off-site options like private rooftops or office spaces, fully equipped.";
+            onSiteOption.classList.add('active');
+            offSiteOption.classList.remove('active');
+        } else {
+            v1Desc.innerText = "Iconic Las Vegas hotels: Wynn, Venetian, or Cosmopolitan private suites.";
+            v2Desc.innerText = "Exclusive access: Nobu, Toca Madera, or Ruth's Chris with poker integration.";
+            v3Desc.innerText = "Official poker rooms: Venetian Poker Room, Resorts World, etc. Full VIP treatment.";
+            v4Desc.innerText = "Mob Museum, Allegiant Stadium, Here Kitty Kitty — unforgettable backdrops.";
+            offSiteOption.classList.add('active');
+            onSiteOption.classList.remove('active');
+        }
+    }
+    onSiteOption.addEventListener('click', () => setVenueMode('on'));
+    offSiteOption.addEventListener('click', () => setVenueMode('off'));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === "#" || targetId === "") return;
+            const target = document.querySelector(targetId);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
