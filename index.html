@@ -312,17 +312,22 @@
             .section-title { font-size: 2.2rem; }
             .container { padding: 0 1.5rem; }
             .hero { min-height: 80vh; }
-            .hero .section-title { font-size: 2.8rem; word-break: break-word; }
+            .hero .section-title { font-size: clamp(2.2rem, 6vw, 3.8rem); }
         }
         @media (max-width: 640px) {
             .brand-logos { padding: 1rem; }
             .bidease-logo-img { height: 36px; }
             .btn-primary { padding: 0.75rem 1.5rem; }
-            .hero .section-title { font-size: 2.2rem; }
             .gallery-grid img { height: 120px; }
         }
         section { padding: 5rem 0; }
         .animate-up { opacity: 0; transform: translateY(30px); transition: none; }
+        .venetian-highlight {
+            background: linear-gradient(145deg, #fff, #f8f9ff);
+            border-radius: 2rem;
+            margin-top: 2rem;
+            padding: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -374,7 +379,7 @@
     </div>
 </section>
 
-<!-- HAND ANALYSIS + CORPORATE GALLERY (replaced right side) -->
+<!-- HAND ANALYSIS + CORPORATE GALLERY -->
 <section id="hand-analysis" style="background: #F0F4FE;">
     <div class="container">
         <div class="split-layout">
@@ -386,7 +391,6 @@
                 <div style="margin-top: 1.5rem;"><i class="fas fa-check-circle gold-text"></i> Live decision audits · <i class="fas fa-check-circle gold-text"></i> Probability mapping · <i class="fas fa-check-circle gold-text"></i> Emotional control drills</div>
             </div>
             <div class="animate-up">
-                <!-- Corporate experiences gallery (lightbox style) -->
                 <h3 style="margin-bottom: 0.8rem;">Corporate Experiences</h3>
                 <div class="gallery-grid" id="corporate-gallery">
                     <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/677637c410dd0d5b0f8c899b.jpeg" data-caption="Corporate Private Dining" target="_blank">
@@ -487,13 +491,14 @@
             <div class="card"><i class="fas fa-chalkboard-user fa-2x"></i><h3>Poker Room</h3><p id="v3Desc">Exclusive access to legendary poker rooms (Venetian, etc).</p></div>
             <div class="card"><i class="fas fa-landmark fa-2x"></i><h3>Off‑Site Venue</h3><p id="v4Desc">Distillery, stadium, speakeasy – fully immersive backdrops.</p></div>
         </div>
+        <!-- original card remains in this section as well, but we also add copy below pricing -->
         <div class="card glass-card" style="margin-top: 2rem; text-align:center;">
             <i class="fas fa-concierge-bell gold-text"></i> <strong>We handle EVERYTHING</strong> — tables, chips, branded courseware, open bar, transportation, coordination.
         </div>
     </div>
 </section>
 
-<!-- PRICING + CUSTOM ADD-ONS -->
+<!-- PRICING + CUSTOM ADD-ONS + NEW VENETIAN SPOTLIGHT -->
 <section id="pricing">
     <div class="container">
         <div class="animate-up">
@@ -525,6 +530,32 @@
             </div>
         </div>
 
+        <!-- NEW: "We handle EVERYTHING" card moved below pricing (duplicate) -->
+        <div class="card glass-card animate-up" style="margin: 2rem 0; text-align:center; background: #ffffffcc;">
+            <i class="fas fa-concierge-bell gold-text"></i> <strong>We handle EVERYTHING</strong> — tables, chips, branded courseware, open bar, transportation, coordination.
+        </div>
+
+        <!-- VENETIAN SPOTLIGHT: Optimal location & experience + gallery -->
+        <div class="venetian-highlight animate-up">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
+                <h3 class="gold-text" style="font-size: 1.8rem;">🇮🇹 Venetian Poker Room Spotlight</h3>
+                <div class="gold-text" style="font-size: 1.5rem; font-weight: 700;">$14,345</div>
+            </div>
+            <p style="font-size: 1.1rem; margin-top: 0.5rem;"><strong>Optimal location & experience for your group (18 attendees):</strong> 2 hours, Venetian Poker Room, open private bar, private server & bartender.</p>
+            <div class="gallery-grid" style="margin-top: 1.5rem;">
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364ba922c8afed24630.png" data-caption="Venetian Poker Room - Premium Setup" target="_blank">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364ba922c8afed24630.png" alt="Venetian Poker Room premium" loading="lazy">
+                </a>
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364fc5128cf4e7a2482.jpg" data-caption="Venetian Poker Room - Iconic Atmosphere" target="_blank">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364fc5128cf4e7a2482.jpg" alt="Venetian Poker Room atmosphere" loading="lazy">
+                </a>
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b37477e8487c42625f2f37.png" data-caption="Venetian Poker Room - Private Event Space" target="_blank">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b37477e8487c42625f2f37.png" alt="Venetian Poker Room private event" loading="lazy">
+                </a>
+            </div>
+            <p class="gold-text" style="font-size: 0.8rem; margin-top: 0.8rem; text-align: center;">Click any image to view full size — each labeled "Corporate Experiences" when expanded.</p>
+        </div>
+
         <!-- CUSTOM ADD-ONS -->
         <div class="animate-up" style="margin-top: 3rem;">
             <span class="badge-gold">BRANDED KEEPSAKES</span>
@@ -551,7 +582,7 @@
     </div>
 </section>
 
-<!-- POTENTIAL VENUES (renamed from PAST EVENTS) -->
+<!-- POTENTIAL VENUES -->
 <section id="potential-venues">
     <div class="container">
         <div class="animate-up">
