@@ -31,6 +31,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- baguetteBox lightbox CSS + JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
@@ -209,6 +211,7 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.2s;
+            cursor: pointer;
         }
         .gallery-grid a:hover {
             transform: scale(1.02);
@@ -218,24 +221,6 @@
             height: 140px;
             object-fit: cover;
             display: block;
-        }
-        .carousel-track {
-            display: flex;
-            gap: 1.8rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding-bottom: 1rem;
-            scrollbar-width: thin;
-        }
-        .carousel-track::-webkit-scrollbar {
-            height: 6px;
-        }
-        .carousel-card {
-            flex: 0 0 280px;
-            background: white;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
         .toggle-switch {
             display: inline-flex;
@@ -281,11 +266,19 @@
             display: flex;
             justify-content: flex-end;
             margin-top: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         .footer-lvpt img {
             height: 50px;
             width: auto;
             opacity: 0.8;
+        }
+        .footer-address {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 1rem;
         }
         .gold-text { color: var(--gold); }
         .badge-gold {
@@ -431,7 +424,7 @@
     </div>
 </section>
 
-<!-- HAND ANALYSIS + CORPORATE GALLERY -->
+<!-- HAND ANALYSIS + CORPORATE GALLERY (with lightbox) -->
 <section id="hand-analysis" style="background: #F0F4FE;">
     <div class="container">
         <div class="split-layout">
@@ -445,26 +438,25 @@
             <div class="animate-up">
                 <h3 style="margin-bottom: 0.8rem;">Corporate Experiences</h3>
                 <div class="gallery-grid" id="corporate-gallery">
-                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/677637c410dd0d5b0f8c899b.jpeg" data-caption="Corporate Private Dining" target="_blank">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/677637c410dd0d5b0f8c899b.jpeg" data-caption="Corporate Private Dining">
                         <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/677637c410dd0d5b0f8c899b.jpeg" alt="Corporate Private Dining" loading="lazy">
                     </a>
-                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/679d4211387caa61facbde2f.png" data-caption="Corporate Private Suite" target="_blank">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/679d4211387caa61facbde2f.png" data-caption="Corporate Private Suite">
                         <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/679d4211387caa61facbde2f.png" alt="Corporate Private Suite" loading="lazy">
                     </a>
-                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/67763a3ace41a6edba7e0f12.png" data-caption="Corporate Mens Retreat" target="_blank">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/67763a3ace41a6edba7e0f12.png" data-caption="Corporate Mens Retreat">
                         <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/67763a3ace41a6edba7e0f12.png" alt="Corporate Mens Retreat" loading="lazy">
                     </a>
-                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329429e0f0927468b5af13.jpg" data-caption="Corporate Banquet Space" target="_blank">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329429e0f0927468b5af13.jpg" data-caption="Corporate Banquet Space">
                         <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329429e0f0927468b5af13.jpg" alt="Corporate Banquet Space" loading="lazy">
                     </a>
-                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b34f27222c3354cc26fe56.png" data-caption="Corporate Venetian Poker Room" target="_blank">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b34f27222c3354cc26fe56.png" data-caption="Corporate Venetian Poker Room">
                         <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b34f27222c3354cc26fe56.png" alt="Corporate Venetian Poker Room" loading="lazy">
                     </a>
-                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329adb1d466e5f44c4fd90.jpg" data-caption="Corporate Girl Power" target="_blank">
+                    <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329adb1d466e5f44c4fd90.jpg" data-caption="Corporate Girl Power">
                         <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69329adb1d466e5f44c4fd90.jpg" alt="Corporate Girl Power" loading="lazy">
                     </a>
                 </div>
-                <p class="gold-text" style="font-size: 0.8rem; margin-top: 1rem; text-align: center;">Click images to view full size</p>
             </div>
         </div>
     </div>
@@ -496,12 +488,12 @@
     </div>
 </section>
 
-<!-- THE PROS -->
+<!-- THE PROS (title changed) -->
 <section id="pros">
     <div class="container">
         <div class="animate-up">
             <span class="badge-gold">WORLD-CLASS MINDS</span>
-            <h2 class="section-title">Your Instructors</h2>
+            <h2 class="section-title">Some of our Pros</h2>
             <p class="section-sub">WSOP champions, million-dollar earners, elite coaches</p>
         </div>
         <div class="grid-3">
@@ -521,7 +513,7 @@
                 <p>WPT Champion • $5.3M+ live earnings • 3+ years teaching</p>
             </div>
         </div>
-        <p class="gold-text" style="margin-top: 2rem; font-size:0.9rem;"><i class="fas fa-shield-alt"></i> Actual instructors assigned based on availability — all pros have $6M+ in tournament earnings.</p>
+        <p class="gold-text" style="margin-top: 2rem; font-size:0.9rem;"><i class="fas fa-shield-alt"></i> Actual instructors assigned based on availability — all pros have Millions in tournament earnings.</p>
     </div>
 </section>
 
@@ -546,7 +538,7 @@
     </div>
 </section>
 
-<!-- PRICING + CUSTOM ADD-ONS + VENETIAN SPOTLIGHT (duplicate "We handle EVERYTHING" removed) -->
+<!-- PRICING + CUSTOM ADD-ONS + VENETIAN SPOTLIGHT -->
 <section id="pricing">
     <div class="container">
         <div class="animate-up">
@@ -578,25 +570,30 @@
             </div>
         </div>
 
-        <!-- VENETIAN SPOTLIGHT: Optimal location & experience + gallery -->
+        <!-- VENETIAN SPOTLIGHT: updated images -->
         <div class="venetian-highlight animate-up">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
-                <h3 class="gold-text" style="font-size: 1.8rem;">🇮🇹 Venetian Poker Room Spotlight</h3>
+                <h3 class="gold-text" style="font-size: 1.8rem;">Venetian Poker Room Spotlight</h3>
                 <div class="gold-text" style="font-size: 1.5rem; font-weight: 700;">$14,345</div>
             </div>
             <p style="font-size: 1.1rem; margin-top: 0.5rem;"><strong>Optimal location & experience for your group (18 attendees):</strong> 2 hours, Venetian Poker Room, open private bar, private server & bartender.</p>
-            <div class="gallery-grid" style="margin-top: 1.5rem;">
-                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364ba922c8afed24630.png" data-caption="Venetian Poker Room - Premium Setup" target="_blank">
-                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364ba922c8afed24630.png" alt="Venetian Poker Room premium" loading="lazy">
+            <div class="gallery-grid" id="venetian-gallery">
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/693b4f0f53781fe90d3419f1.webp" data-caption="Venetian Poker Room - Exclusive Setup">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/693b4f0f53781fe90d3419f1.webp" alt="Venetian Poker Room exclusive" loading="lazy">
                 </a>
-                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364fc5128cf4e7a2482.jpg" data-caption="Venetian Poker Room - Iconic Atmosphere" target="_blank">
-                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364fc5128cf4e7a2482.jpg" alt="Venetian Poker Room atmosphere" loading="lazy">
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/693b4f0f5b7f6413a3defc1e.jpg" data-caption="Venetian Poker Room - Premium Atmosphere">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/693b4f0f5b7f6413a3defc1e.jpg" alt="Venetian Poker Room atmosphere" loading="lazy">
                 </a>
-                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b37477e8487c42625f2f37.png" data-caption="Venetian Poker Room - Private Event Space" target="_blank">
-                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b37477e8487c42625f2f37.png" alt="Venetian Poker Room private event" loading="lazy">
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/693b4f0f517c3a03ae6e671a.webp" data-caption="Venetian Poker Room - Private Event">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/693b4f0f517c3a03ae6e671a.webp" alt="Venetian Poker Room private event" loading="lazy">
+                </a>
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364fc5128cf4e7a2482.jpg" data-caption="Venetian Poker Room - Iconic View">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b46364fc5128cf4e7a2482.jpg" alt="Venetian Poker Room iconic" loading="lazy">
+                </a>
+                <a href="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b37477e8487c42625f2f37.png" data-caption="Venetian Poker Room - Event Space">
+                    <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69b37477e8487c42625f2f37.png" alt="Venetian Poker Room event space" loading="lazy">
                 </a>
             </div>
-            <p class="gold-text" style="font-size: 0.8rem; margin-top: 0.8rem; text-align: center;">Click any image to view full size — each labeled "Corporate Experiences" when expanded.</p>
         </div>
 
         <!-- CUSTOM ADD-ONS -->
@@ -625,7 +622,7 @@
     </div>
 </section>
 
-<!-- POTENTIAL VENUES -->
+<!-- POTENTIAL VENUES (no emojis) -->
 <section id="potential-venues">
     <div class="container">
         <div class="animate-up">
@@ -634,15 +631,15 @@
             <p class="section-sub">Choose from Las Vegas' most iconic locations for your exclusive event</p>
         </div>
         <div class="venue-gallery">
-            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28a1d79ed017c023b2.jpg" alt="Allegiant Stadium"><div class="venue-label">🏟️ Allegiant Stadium</div></div>
-            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28b700a2a6f37291b3.jpg" alt="Las Vegas Distillery"><div class="venue-label">🥃 Las Vegas Distillery</div></div>
-            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5c8ff215da264751a508.jpg" alt="Mob Museum"><div class="venue-label">🕵️ The Mob Museum</div></div>
-            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697adfcc1fd827412f82ff14.jpg" alt="Here Kitty Kitty"><div class="venue-label">🍸 Here Kitty Kitty Speakeasy</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28a1d79ed017c023b2.jpg" alt="Allegiant Stadium"><div class="venue-label">Allegiant Stadium</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5d28b700a2a6f37291b3.jpg" alt="Las Vegas Distillery"><div class="venue-label">Las Vegas Distillery</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697a5c8ff215da264751a508.jpg" alt="Mob Museum"><div class="venue-label">The Mob Museum</div></div>
+            <div class="venue-card"><img src="https://storage.googleapis.com/msgsndr/NDOgzs7w4I6qjHbRXevV/media/697adfcc1fd827412f82ff14.jpg" alt="Here Kitty Kitty"><div class="venue-label">Here Kitty Kitty Speakeasy</div></div>
         </div>
     </div>
 </section>
 
-<!-- FAQ SECTION (NEW) -->
+<!-- FAQ SECTION -->
 <section id="faq">
     <div class="container">
         <div class="animate-up">
@@ -681,6 +678,7 @@
                 <a href="https://pokertraininglasvegas.com" target="_blank" style="display: inline-block;">
                     <img src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/688b94d7fc4ae33b5ab65b48.png" alt="Las Vegas Poker Training">
                 </a>
+                <div class="footer-address">Las Vegas Poker Training | 3753 Howard Hughes Parkway UNIT 200 | Las Vegas, NV 89119 United States</div>
             </div>
         </div>
     </div>
@@ -706,7 +704,20 @@
 }
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
 <script>
+    // Initialize lightboxes
+    baguetteBox.run('#corporate-gallery', {
+        captions: true,
+        buttons: 'auto',
+        animation: 'slideIn'
+    });
+    baguetteBox.run('#venetian-gallery', {
+        captions: true,
+        buttons: 'auto',
+        animation: 'slideIn'
+    });
+
     gsap.registerPlugin(ScrollTrigger);
     document.querySelectorAll('.animate-up').forEach(el => {
         gsap.fromTo(el, { opacity: 0, y: 40 }, {
